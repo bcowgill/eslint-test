@@ -4,13 +4,23 @@
 	description: 'Experiments with eslint as compared to jscs configuration',
 	main: 'index.js',
 	scripts: {
-		// npm-json5 run json5; npm test  OR JUST npm-json5 test
-		json5: "json5 -c package.json5 .eslintrc.json5", // generate package.json from package.json5 not necessary
-		pretest: "json5 -c .eslintrc.json5",
-		test: 'eslint "**/*.lint.js"',
-		posttest: 'npm-json5 run clean',
-		build: 'eslint --fix "**/*.lint.js"',
-		clean: 'rm package.json .eslintrc.json',
+		// npm-json5 run json5; npm test  OR JUST npm-json5 test.
+		json5: 'json5 -c package.json5', // generate package.json from package.json5 not necessary
+
+		pre_eslint: 'npm-json5 run json5',
+		_eslint: 'eslint -c package.json "**/*.lint.js"',
+		post_eslint: 'rm package.json',
+
+		// quick linting only the files that have changed.
+		lint: 'npm-json5 run _eslint -- --cache',
+
+		// normal linting of all files.
+		test: 'npm-json5 run _eslint -- --debug',
+
+		// build will fix any lint errors which it is able to.
+		build: 'npm-json5 run _eslint -- --fix --debug',
+
+		clean: 'rm package.json .eslintcache',
 		env: "set | grep PATH", // just to debug the environment
 	},
 	repository: {
@@ -24,6 +34,35 @@
 		url: 'https://github.com/bcowgill/eslint-test/issues',
 	},
 	homepage: 'https://github.com/bcowgill/eslint-test#readme',
+	eslintConfig: {
+		"env": {
+			"browser": true,
+			"es6": true,
+			"node": true
+		},
+		"extends": "eslint:recommended",
+		"parserOptions": {
+			"sourceType": "module"
+		},
+		"rules": {
+			"indent": [
+				"error",
+				"tab"
+			],
+			"linebreak-style": [
+				"error",
+				"unix"
+			],
+			"quotes": [
+				"error",
+				"single"
+			],
+			"semi": [
+				"error",
+				"never"
+			]
+		}
+	},
 	devDependencies: {
 		"json5": "^0.5.1",      // to convert package.json5 to package.json
 		"npm-json5": "^0.1.4",  // so that package.json doesn't need to be generated

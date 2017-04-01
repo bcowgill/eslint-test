@@ -38,4 +38,6 @@ jspm_packages
 
 # .json files as we use .json5
 package.json
-.eslintrc.json
+
+# eslint files to ignore
+.eslintcache
