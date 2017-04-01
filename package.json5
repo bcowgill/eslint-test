@@ -71,7 +71,8 @@
 				"error",
 				"never"
 			],
-			"no-await-in-loop": "error"
+			"no-await-in-loop": "error",
+			"no-compare-neg-zero": "error",
 		}
 	},
 	devDependencies: {
