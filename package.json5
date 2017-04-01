@@ -1,0 +1,28 @@
+{
+	name: 'eslint-test',
+	version: '1.0.0',
+	description: 'Experiments with eslint as compared to jscs configuration',
+	main: 'index.js',
+	scripts: {
+		// npm-json5 run json5; npm test  OR JUST npm-json5 test
+		"json5": "json5 -c package.json5", // generate package.json from package.json5 not necessary
+
+		test: 'npm test',
+		"env": "set | grep PATH", // just to debug the environment
+	},
+	repository: {
+		type: 'git',
+		url: 'git+https://github.com/bcowgill/eslint-test.git',
+	},
+	keywords: ['eslint', 'experiment'],
+	author: 'Brent S.A. Cowgill',
+	license: 'Unlicense',
+	bugs: {
+		url: 'https://github.com/bcowgill/eslint-test/issues',
+	},
+	homepage: 'https://github.com/bcowgill/eslint-test#readme',
+	"devDependencies": {
+		"json5": "^0.5.1",      // to convert package.json5 to package.json
+		"npm-json5": "^0.1.4",  // so that package.json doesn't need to be generated
+	},
+}
