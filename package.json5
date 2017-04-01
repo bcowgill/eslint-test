@@ -71,6 +71,7 @@
 				"error",
 				"never"
 			],
+			"no-console": ["error", { "allow": ["warn", "error"]}],
 			"no-await-in-loop": "error",
 			"no-compare-neg-zero": "error",
 		}
