@@ -1,8 +1,11 @@
 # eslint-test
-Experiments with [eslint][http://eslint.org/] in comparison to my jscs configuration.
 
-This uses a package.json5 configuration file. So you should have
+Experiments with [eslint](http://eslint.org/) in comparison to my jscs configuration.
 
-`npm install -g npm-json5`
+This uses a `package.json5` configuration file. So you should have
 
-npm-json5 test
+```npm install -g npm-json5```
+
+# Running the linter
+
+```npm-json5 test```
