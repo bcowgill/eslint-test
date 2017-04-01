@@ -24,5 +24,6 @@
 	"devDependencies": {
 		"json5": "^0.5.1",      // to convert package.json5 to package.json
 		"npm-json5": "^0.1.4",  // so that package.json doesn't need to be generated
+		eslint: '^3.19.0',
 	},
 }
