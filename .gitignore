@@ -41,3 +41,6 @@ package.json
 
 # eslint files to ignore
 .eslintcache
+
+# temporary built files
+.tmp/

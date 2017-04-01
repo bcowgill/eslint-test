@@ -8,11 +8,15 @@
 		json5: 'json5 -c package.json5', // generate package.json from package.json5 not necessary
 
 		pre_eslint: 'npm-json5 run json5',
-		_eslint: 'eslint -c package.json "**/*.lint.js"',
+		pre_eslinterr: 'npm-json5 run pre_eslint',
+		_eslint: 'eslint --debug -c package.json "**/*.lint.js"',
+		// useful -f formats: compact, unix, visualstudio, stylish, table, codeframe
+		_eslinterr: 'eslint --debug -f table -c package.json "**/*.fail.js"',
 		post_eslint: 'rm package.json',
+		post_eslinterr: 'npm-json5 run post_eslint',
 
 		// quick linting only the files that have changed.
-		lint: 'npm-json5 run _eslint -- --cache',
+		lint: 'npm-json5 run _eslint -- --cache-location=.tmp/ --cache',
 
 		// normal linting of all files.
 		test: 'npm-json5 run _eslint -- --debug',
@@ -20,7 +24,10 @@
 		// build will fix any lint errors which it is able to.
 		build: 'npm-json5 run _eslint -- --fix --debug',
 
-		clean: 'rm package.json .eslintcache',
+		// lint the files which have failures
+		errors: 'npm-json5 run _eslinterr',
+
+		clean: 'rm -rf package.json .tmp',
 		env: "set | grep PATH", // just to debug the environment
 	},
 	repository: {
