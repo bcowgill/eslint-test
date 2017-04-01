@@ -9,9 +9,11 @@
 
 		pre_eslint: 'npm-json5 run json5',
 		pre_eslinterr: 'npm-json5 run pre_eslint',
-		_eslint: 'eslint --debug -c package.json "**/*.lint.js"',
+		_eslint: 'eslint --debug -c package.json \
+			"**/*.lint.js"',
 		// useful -f formats: compact, unix, visualstudio, stylish, table, codeframe
-		_eslinterr: 'eslint --debug -f table -c package.json "**/*.fail.js"',
+		_eslinterr: 'eslint --debug -c package.json \
+			-f table "**/*.fail.js"',
 		post_eslint: 'rm package.json',
 		post_eslinterr: 'npm-json5 run post_eslint',
 
@@ -49,7 +51,8 @@
 		},
 		"extends": "eslint:recommended",
 		"parserOptions": {
-			"sourceType": "module"
+			"sourceType": "module",
+			"ecmaVersion": 8,
 		},
 		"rules": {
 			"indent": [
@@ -67,7 +70,8 @@
 			"semi": [
 				"error",
 				"never"
-			]
+			],
+			"no-await-in-loop": "error"
 		}
 	},
 	devDependencies: {
