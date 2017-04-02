@@ -79,6 +79,7 @@
 			// best practice
 			"accessor-pairs": "error",
 			"array-callback-return": "error",
+			"block-scoped-var": "error",
 		}
 	},
 	devDependencies: {
