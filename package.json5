@@ -7,14 +7,14 @@
 		// npm-json5 run json5; npm test  OR JUST npm-json5 test.
 		json5: 'json5 -c package.json5', // generate package.json from package.json5 not necessary
 
-		pre_eslint: 'npm-json5 run json5',
+		pre_eslint: 'npm-json5 run json5 && ./src/prelint.sh',
 		pre_eslinterr: 'npm-json5 run pre_eslint',
 		_eslint: 'eslint -c package.json \
 			"**/*.lint.js"',
 		// useful -f formats: compact, unix, visualstudio, stylish, table, codeframe
 		_eslinterr: 'eslint -c package.json \
 			-f visualstudio "**/*.fail.js"',
-		post_eslint: 'rm package.json',
+		post_eslint: 'rm package.json && ./src/cleanpostlint.sh',
 		post_eslinterr: 'npm-json5 run post_eslint',
 
 		// quick linting only the files that have changed.
@@ -77,12 +77,15 @@
 			"no-compare-neg-zero": "error",
 			// ...
 			// best practice
+			// settings commented out are to avoid interfering with passing
+			// .lint.js files. should uncomment them to use in a real project
 			"accessor-pairs": "error",
 			"array-callback-return": "error",
 			//"block-scoped-var": "error",
 			"class-methods-use-this": "error",
 			"complexity": ["error", { "max": 8 }],
 			//"consistent-return": "error",
+			"curly": "error",
 		}
 	},
 	devDependencies: {
