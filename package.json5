@@ -81,7 +81,8 @@
 			"array-callback-return": "error",
 			//"block-scoped-var": "error",
 			"class-methods-use-this": "error",
-			"complexity": ["error", 8],
+			"complexity": ["error", { "max": 8 }],
+			//"consistent-return": "error",
 		}
 	},
 	devDependencies: {
