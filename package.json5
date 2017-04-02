@@ -9,11 +9,11 @@
 
 		pre_eslint: 'npm-json5 run json5',
 		pre_eslinterr: 'npm-json5 run pre_eslint',
-		_eslint: 'eslint --debug -c package.json \
+		_eslint: 'eslint -c package.json \
 			"**/*.lint.js"',
 		// useful -f formats: compact, unix, visualstudio, stylish, table, codeframe
-		_eslinterr: 'eslint --debug -c package.json \
-			-f table "**/*.fail.js"',
+		_eslinterr: 'eslint -c package.json \
+			-f compact "**/*.fail.js"',
 		post_eslint: 'rm package.json',
 		post_eslinterr: 'npm-json5 run post_eslint',
 
@@ -21,10 +21,10 @@
 		lint: 'npm-json5 run _eslint -- --cache-location=.tmp/ --cache',
 
 		// normal linting of all files.
-		test: 'npm-json5 run _eslint -- --debug',
+		test: 'npm-json5 run _eslint',
 
 		// build will fix any lint errors which it is able to.
-		build: 'npm-json5 run _eslint -- --fix --debug',
+		build: 'npm-json5 run _eslint -- --fix',
 
 		// lint the files which have failures
 		errors: 'npm-json5 run _eslinterr',
@@ -71,9 +71,13 @@
 				"error",
 				"never"
 			],
+			// possible errors
 			"no-console": ["error", { "allow": ["warn", "error"]}],
 			"no-await-in-loop": "error",
 			"no-compare-neg-zero": "error",
+			// ...
+			// best practice
+			"accessor-pairs": "error",
 		}
 	},
 	devDependencies: {
