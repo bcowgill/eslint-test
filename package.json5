@@ -13,7 +13,7 @@
 			"**/*.lint.js"',
 		// useful -f formats: compact, unix, visualstudio, stylish, table, codeframe
 		_eslinterr: 'eslint -c package.json \
-			-f compact "**/*.fail.js"',
+			-f visualstudio "**/*.fail.js"',
 		post_eslint: 'rm package.json',
 		post_eslinterr: 'npm-json5 run post_eslint',
 
@@ -78,6 +78,7 @@
 			// ...
 			// best practice
 			"accessor-pairs": "error",
+			"array-callback-return": "error",
 		}
 	},
 	devDependencies: {
