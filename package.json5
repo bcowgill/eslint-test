@@ -87,6 +87,7 @@
 			//"consistent-return": "error",
 			"curly": "error",
 			"default-case": "error",
+			"dot-location": ["error", "property"],
 		}
 	},
 	devDependencies: {

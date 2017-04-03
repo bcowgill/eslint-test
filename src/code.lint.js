@@ -1,4 +1,4 @@
-/*e s l i n t no-compare-neg-zero: "error"*/
+;/*e s l i n t no-compare-neg-zero: "error"*/
 
 (function (x) {
 
@@ -157,6 +157,19 @@
 	void x
 
 })()
+;/*e s l i n t dot-location: ["error", "object"]*/
+
+(function (object) {
+
+	var foo = object.
+		property
+	var bar = object.property
+
+	// Prevent unused var errors from the above
+	void foo
+	void bar
+
+})()
 ;/*e s l i n t complexity: ["error", 2]*/
 
 (function () {
@@ -202,7 +215,7 @@
 	void o2
 
 })()
-/*e s l i n t class-methods-use-this: "error"*/
+;/*e s l i n t class-methods-use-this: "error"*/
 ;/*e s l i n t-env es6*/
 
 (function () {
@@ -427,3 +440,17 @@
 	void doTryCatch
 
 })()
+;/*e s l i n t dot-location: ["error", "property"]*/
+
+(function (object) {
+
+	var foo = object
+.property
+	var bar = object.property
+
+	// Prevent unused var errors from the above
+	void foo
+	void bar
+
+})()
+
