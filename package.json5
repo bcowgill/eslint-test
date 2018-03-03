@@ -7,6 +7,7 @@
 		// npm-json5 run json5; npm test  OR JUST npm-json5 test.
 		json5: 'json5 -c package.json5', // generate package.json from package.json5 not necessary
 
+		// eslint command line https://eslint.org/docs/user-guide/command-line-interface
 		pre_eslint: 'npm-json5 run json5 && ./src/prelint.sh',
 		pre_eslinterr: 'npm-json5 run pre_eslint',
 		_eslint: 'eslint -c package.json \
@@ -20,13 +21,13 @@
 		// quick linting only the files that have changed.
 		lint: 'npm-json5 run _eslint -- --cache-location=.tmp/ --cache',
 
-		// normal linting of all files.
+		// normal linting of all files no errors should happen here.
 		test: 'npm-json5 run _eslint',
 
 		// build will fix any lint errors which it is able to.
 		build: 'npm-json5 run _eslint -- --fix',
 
-		// lint the files which have failures
+		// lint the files which have failures, testing for errors.
 		errors: 'npm-json5 run _eslinterr',
 
 		clean: 'rm -rf package.json .tmp',
@@ -44,17 +45,20 @@
 	},
 	homepage: 'https://github.com/bcowgill/eslint-test#readme',
 	eslintConfig: {
-		"env": {
+		"env": { // Supported environments: https://eslint.org/docs/user-guide/configuring#specifying-environments
 			"browser": true,
 			"es6": true,
 			"node": true
+			// "shared-node-browser"
+			// mocha, jasmine, jest, etc...
 		},
-		"extends": "eslint:recommended",
+		"extends": "eslint:recommended", // All rules with check marks on https://eslint.org/docs/rules/
 		"parserOptions": {
 			"sourceType": "module",
 			"ecmaVersion": 8,
 		},
 		"rules": {
+			// Some overall style options first:
 			"indent": [
 				"error",
 				"tab"
@@ -71,14 +75,16 @@
 				"error",
 				"never"
 			],
-			// possible errors
+			// ESLINT rules https://eslint.org/docs/rules/
+			// Possible Errors - These rules relate to possible syntax or logic errors in JavaScript code:
+			// new ones: for-direction, getter-return, no-control-regex, no-debugger, no-dupe-args, no-dupe-keys
 			"no-console": ["error", { "allow": ["warn", "error"]}],
 			"no-await-in-loop": "error",
 			"no-compare-neg-zero": "error",
 			// ...
-			// best practice
+			// Best Practices - These rules relate to better ways of doing things to help you avoid problems:
 			// settings commented out are to avoid interfering with passing
-			// .lint.js files. should uncomment them to use in a real project
+			// .lint.js files. You should uncomment them to use in a real project
 			"accessor-pairs": "error",
 			"array-callback-return": "error",
 			//"block-scoped-var": "error",
@@ -88,6 +94,15 @@
 			"curly": "error",
 			"default-case": "error",
 			"dot-location": ["error", "property"],
+			"dot-notation": ["error", { "allowKeywords": false }],
+			// HEREIAM -- https://eslint.org/docs/rules/dot-notation
+// Strict Mode - These rules relate to strict mode directives:
+// Variables - These rules relate to variable declarations:
+// Node.js and CommonJS - These rules relate to code running in Node.js, or in browsers with CommonJS:
+// Stylistic Issues - These rules relate to style guidelines, and are therefore quite subjective:
+// ECMAScript 6 - These rules relate to ES6, also known as ES2015:
+// Deprecated - These rules have been deprecated in accordance with the deprecation policy, and replaced by newer rules:
+// Removed - These rules from older versions of ESLint (before the deprecation policy existed) have been replaced by newer rules:
 		}
 	},
 	devDependencies: {
